@@ -8,11 +8,22 @@
 </ion-header>
 
 <ion-content padding>
-  <h3>Ionic Menu Starter</h3>
+  <h3>Задайте свой маршрут</h3>
+  <input placeholder="Enter route name" [(ngModel)] = "routeName" type="text" class="form-control">
+  <div>
+      <input placeholder="Enter start point" type="text" class="form-control" #startPointRef>
+      <button ion-button round outline (click)="AddMiddlePoint()">+</button>
+  </div>
+  
+  <div *ngFor="let point of middlePoints">
+      <input id="{{point}}" placeholder="Enter middle point" type="text" class="form-control">
+  </div>
 
-  <p>
-    If you get lost, the <a href="http://ionicframework.com/docs/v2">docs</a> will show you the way.
-  </p>
+  <div>
+      <input placeholder="Enter end point" type="text" class="form-control" #endPointRef>
+  </div>
+  <div>
+      <button ion-button round (click)="SaveRoute()">Создать маршрут</button>
+  </div>
 
-  <button ion-button secondary menuToggle>Toggle Menu</button>
 </ion-content>
