@@ -7,9 +7,9 @@ namespace RouteSaver.Business.RouteService
 {
     public interface IRouteService
     {
-        void CreateRoute(string routeName, List<string> routePoints, string userName);
+        void CreateRoute(string routeName, List<string> routePoints, int userId);
 
-        IEnumerable<Route> GetAllRoutes(string userName);
+        IEnumerable<Route> GetAllRoutes(int userId);
 
         Route GetRouteById(int id);
     }

@@ -1,7 +1,9 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using RouteSaver.Business.RouteService;
+using RouteSaver.EF.Entities;
 using RouteSaver.WebApi.DTO;
 
 namespace RouteSaver.WebApi.Controllers
@@ -20,15 +22,19 @@ namespace RouteSaver.WebApi.Controllers
         [HttpPost("create")]
         public IActionResult Create([FromBody]RouteDto routeDto)
         {
-            var userName = HttpContext.User.Identity.Name;
+            var userId = Convert.ToInt32(HttpContext.User.Identity.Name);
             List<string> routePoints = new List<string>
             {
                 routeDto.FirstPoint,
                 routeDto.LastPoint
             };
 
-            routePoints.AddRange(routeDto.MiddlePoints);
-            _routeService.CreateRoute(routeDto.RouteName, routePoints, userName);
+            if (routeDto.MiddlePoints != null && routeDto.MiddlePoints.Length != 0)
+            {
+                routePoints.AddRange(routeDto.MiddlePoints);
+            }
+
+            _routeService.CreateRoute(routeDto.RouteName, routePoints, userId);
 
             return Ok();
         }
@@ -36,8 +42,8 @@ namespace RouteSaver.WebApi.Controllers
         [HttpGet("get-all-routes")]
         public IActionResult GetAllRoutes()
         {
-            var userName = HttpContext.User.Identity.Name;
-            var allRoutes = _routeService.GetAllRoutes(userName);
+            var userId = Convert.ToInt32(HttpContext.User.Identity.Name);
+            var allRoutes = _routeService.GetAllRoutes(userId);
             return Ok(allRoutes);
         }
 

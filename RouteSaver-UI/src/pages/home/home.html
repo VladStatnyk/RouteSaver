@@ -7,23 +7,27 @@
   </ion-navbar>
 </ion-header>
 
+
 <ion-content padding>
+    <form #form="ngForm" novalidate>
   <h3>Задайте свой маршрут</h3>
-  <input placeholder="Enter route name" [(ngModel)] = "routeName" type="text" class="form-control">
+  <input placeholder="Enter route name" [(ngModel)] = "routeName" required  name="routeName" type="text" class="form-control">
   <div>
-      <input placeholder="Enter start point" type="text" class="form-control" #startPointRef>
+      <input placeholder="Enter start point" [(ngModel)] = "startPoint" name="startPoint" type="text" class="form-control" required  #startPointRef>
       <button ion-button round outline (click)="AddMiddlePoint()">+</button>
   </div>
   
   <div *ngFor="let point of middlePoints">
-      <input id="{{point}}" placeholder="Enter middle point" type="text" class="form-control">
+      <input id="{{point.Id}}" placeholder="Enter middle point" [(ngModel)] = "point.Name" name="point" required type="text" class="form-control">
   </div>
 
   <div>
-      <input placeholder="Enter end point" type="text" class="form-control" #endPointRef>
+      <input placeholder="Enter end point" [(ngModel)] = "endPoint" name="endPoint" type="text" required  class="form-control" #endPointRef>
   </div>
   <div>
-      <button ion-button round (click)="SaveRoute()">Создать маршрут</button>
+      <button ion-button round type="submit" (click)="SaveRoute()" [disabled]="!form.form.valid">Создать маршрут</button>
   </div>
-
+</form>
 </ion-content>
+
+

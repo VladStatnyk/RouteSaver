@@ -17,9 +17,9 @@ namespace RouteSaver.Business.RouteService
             _context = context;
         }
 
-        public void CreateRoute(string routeName, List<string> routePoints, string userName)
+        public void CreateRoute(string routeName, List<string> routePoints, int userId)
         {
-            var user = _context.Users.FirstOrDefault(x => x.Username == userName);
+            var user = _context.Users.FirstOrDefault(x => x.Id == userId);
             var route = new Route
             {
                 RouteName = routeName,
@@ -37,12 +37,12 @@ namespace RouteSaver.Business.RouteService
             _context.SaveChanges();
         }
 
-        public IEnumerable<Route> GetAllRoutes(string userName)
+        public IEnumerable<Route> GetAllRoutes(int userId)
         {
             return _context.Routes
                 .Include(x => x.RoutePoints)
                 .Include(x => x.Owner)
-                .Where(x => x.Owner.Username == userName)
+                .Where(x => x.Owner.Id == userId)
                 .ToList();
         }
 

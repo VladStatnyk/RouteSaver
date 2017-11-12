@@ -8,6 +8,7 @@ import { ElementRef, OnInit, ViewChild } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { } from 'googlemaps';
 import { MapsAPILoader } from '@agm/core';
+import { Point } from '../../models/Point'
 
 @Component({
   selector: 'page-home',
@@ -20,7 +21,7 @@ export class HomePage implements OnInit {
 
   }
 
-  public middlePoints:Array<Number>;
+  public middlePoints:Array<Point>;
   public middlePointsRef:Array<HTMLInputElement>;
   public routeName: string;
 
@@ -38,7 +39,7 @@ export class HomePage implements OnInit {
   }
 
   ngOnInit() {
-    this.middlePoints = new Array<Number>();
+    this.middlePoints = new Array<Point>();
     this.middlePointsRef = new Array<HTMLInputElement>();
     //load Places Autocomplete
     this.mapsAPILoader.load().then(() => {
@@ -56,7 +57,7 @@ export class HomePage implements OnInit {
 
   public AddMiddlePoint():void{
     let newPointID = this.middlePoints.length + 1;
-    this.middlePoints.push(newPointID);
+    this.middlePoints.push(new Point(newPointID, ""));
     let tempArray = this.middlePointsRef;
     setTimeout(function(){
       let newSearchElem = document.getElementById(newPointID.toString());
