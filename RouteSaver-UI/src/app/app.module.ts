@@ -14,6 +14,7 @@ import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { AuthServiceProvider } from '../providers/auth-service/auth-service';
 import { RouteService } from '../providers/route-service/route-service';
+import { TokenService } from '../providers/token-service/token-service';
 
 import { AppConfig } from './app.config';
 
@@ -48,6 +49,7 @@ import { AppConfig } from './app.config';
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     AuthServiceProvider,
     RouteService,
+    TokenService,
     AppConfig
   ]
 })
