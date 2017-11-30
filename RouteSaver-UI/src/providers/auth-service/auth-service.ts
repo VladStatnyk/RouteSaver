@@ -22,9 +22,8 @@ export class AuthServiceProvider {
   // Normally make a server request and store
   // e.g. the auth token
   login(username: string, password: string) {
-
    return this.http.post(this.config.apiUrl + '/auth/login', { username: username, password: password });
-    
+  
   }
 
   // Logout a user, destroy token and remove

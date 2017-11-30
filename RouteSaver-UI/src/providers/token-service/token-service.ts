@@ -11,6 +11,8 @@ public GetToken() {
         let headers = new Headers({ 'Authorization': 'Bearer ' + currentUser.token });
         return new RequestOptions({ headers: headers });
     }
+
+    return null;
 }
 
 }
