@@ -23,8 +23,6 @@ Getting Started with this Project
 To get started, clone this repo, and run `npm install` in the root directory.
 
 ```sh
-git clone https://github.com/ionic-team/ionic-unit-testing-example.git
-cd ionic-unit-testing-example
 npm install
 ```
 Then, you should run `ionic serve` to make sure the project loads.
