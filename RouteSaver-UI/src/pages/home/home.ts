@@ -21,9 +21,11 @@ export class HomePage implements OnInit {
 
   }
 
+  formValid: boolean = false;
   public middlePoints:Array<Point>;
   public middlePointsRef:Array<HTMLInputElement>;
   public routeName: string;
+  homeForm: FormGroup;
 
   @ViewChild("startPointRef")
   public startPointRef: ElementRef;
@@ -33,7 +35,6 @@ export class HomePage implements OnInit {
 
   ionViewCanEnter() {
      if(!this.AuthServiceProvider.authenticated()){
-       console.log("inside");
         this.navCtrl.push(LoginPage);
      }
   }
